@@ -1,0 +1,382 @@
+/* 间距 */
+@gap: 16px;
+/* 字号 */
+@fs: 14px;
+
+.layout-sidebar {
+  width: 220px;
+  transition: all 0.15s;
+  .retina-logo {
+    margin-bottom: 0;
+    height: 48px;
+    padding: 11px 18px;
+    text-align: center;
+    color: #fff;
+    background: #363745;
+    img {
+      width: 28px;
+      height: 26px;
+      cursor: pointer;
+    }
+    h6 {
+      margin-left: 0.8em;
+      margin-bottom: 0;
+      white-space: nowrap;
+    }
+  }
+
+  .layout-menu {
+    /* overflow: hidden;会导致folded子菜单dropright无法显示 */
+    height: calc(100% - 48px);
+    background-color: #26273b;
+  }
+  .menu-icon {
+    opacity: 0.7;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 16px !important;
+    background-size: cover;
+  }
+
+  .menu__item,
+  .menu__submenu-title {
+    color: hsla(0, 0%, 100%, 0.65) !important;
+  }
+  .menu--vertical .menu__item {
+    border-right: 0;
+  }
+  .menu__item .menu__item:focus,
+  .menu__item:hover,
+  .menu__submenu-title:focus,
+  .menu__submenu-title:hover,
+  .menu__item--checked,
+  .menu__item--checked:focus,
+  .menu__item--checked:hover,
+  .dropdown--open.dropright .menu__submenu-title,
+  .menu__submenu--checked .menu__submenu-title {
+    color: #fff !important;
+    background-color: #15172a !important;
+    .menu-icon {
+      opacity: 1;
+    }
+  }
+  .menu__item--checked {
+    cursor: default;
+    pointer-events: none;
+    border-left: 3px solid #2d98ff;
+  }
+  .menu__submenu--checked > .menu__submenu-title {
+    background-image: none;
+  }
+  .menu--ghost .dropdown__menu,
+  .menu--ghost .select__menu {
+    background-color: transparent;
+  }
+}
+
+.layout-sidebar-folded {
+  width: 64px;
+  .retina-logo h6 {
+    display: none;
+  }
+  .menu-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 0 !important;
+  }
+  .menu-icon2 {
+    width: 19px;
+    height: 19px;
+  }
+  .menu-icon1,
+  .menu-icon4,
+  .menu-icon5 {
+    width: 20px;
+    height: 20px;
+  }
+
+  .menu-icon3 {
+    width: 19px;
+    height: 21px;
+  }
+
+  .menu-icon6 {
+    height: 23px;
+    width: 23px;
+  }
+  .menu--folded {
+    .menu__submenu-title {
+      padding: 0;
+      padding-left: 19px;
+    }
+  }
+  .menu--vertical .menu__submenu.dropright ul li {
+    margin-left: 10px;
+    background: #26273b;
+    &:first-child {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+    &:last-child {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+  .menu--folded .menu__submenu--checked.dropright .dropdown__menu,
+  .menu--folded
+    .menu__submenu.menu--open.dropdown--open.dropright
+    .dropdown__menu {
+    display: none;
+  }
+
+  .menu--folded .menu__submenu.dropright:hover .dropdown__menu,
+  .menu--folded
+    .menu__submenu.menu--open.dropdown--open.dropright:hover
+    .dropdown__menu {
+    display: block !important;
+  }
+}
+
+.layout-navbar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  flex-shrink: 0;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  .breadcrumb {
+    padding-left: 0;
+    align-items: center;
+    .breadcrumb__item {
+      font-size: 14px;
+      cursor: pointer;
+      &.active {
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+    .breadcrumb__separator {
+      padding: 0 8px 0 6px;
+    }
+  }
+}
+
+/* 千分位英文逗号展示 */
+.fe-longnum {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI;
+}
+
+.fe-text-md {
+  font-size: @fs;
+}
+
+/* 圆角阴影 */
+.fe-shadow {
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* 布局元素-相对定位 */
+.fe-layout {
+  position: relative;
+}
+
+.fe-m {
+  margin: @gap;
+}
+
+.fe-mx {
+  margin: 0 @gap;
+}
+
+.fe-my {
+  margin: @gap 0;
+}
+
+.fe-mt {
+  margin-top: @gap;
+}
+
+.fe-mb {
+  margin-bottom: @gap;
+}
+
+.fe-mr {
+  margin-right: @gap;
+}
+
+.fe-ml {
+  margin-left: @gap;
+}
+
+.fe-p {
+  padding: @gap;
+}
+
+.fe-px {
+  padding: 0 @gap;
+}
+
+.fe-py {
+  padding: @gap 0;
+}
+
+.fe-pt {
+  padding-top: @gap;
+}
+
+.fe-pb {
+  padding-bottom: @gap;
+}
+
+/* 子元素垂直居中 */
+.fe-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.fe-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .flex-column页面容器 */
+.fe-flex-page {
+  .fe-flex-column();
+  height: 100%;
+  overflow: hidden;
+}
+
+/* flex高度自适应,禁止添加width属性 */
+.fe-flex-auto {
+  height: 100%;
+  flex: auto;
+  overflow: hidden;
+}
+
+/* flex-水平垂直居中 */
+.fe-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 页面滚动 */
+.fe-scroll-y {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.fe-flex {
+  display: flex;
+}
+
+/* flex-子元素水平方向左右布局 */
+.fe-flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* flex-子元素垂直方向上下布局 */
+.flex-column-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 块头部 46=文字14+间距16*2 */
+.fe-head {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+  padding: 0 16px;
+}
+
+/* 快头部-small 减少上下留白,通过margin处理额外间距需求 */
+.fe-head-sm {
+  padding: 12px 16px;
+  line-height: 1;
+}
+
+/* 含有大量搜索表单组件时的block-head 64=表单组件32+间距16*2 */
+.fe-head-lg {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 64px;
+  padding: 0 16px;
+}
+
+/* 块元素标志文字 */
+.fe-title {
+  position: relative;
+  display: inline-table;
+  padding-left: 9px;
+  line-height: 1;
+  &:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background: #2c98ff;
+  }
+}
+
+/* 搜索按钮 */
+.fe-btn-search,
+.fe-btn-gradient {
+  height: 32px;
+  line-height: 32px;
+  margin-left: 26px;
+  padding: 0 16px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 14px;
+  background: linear-gradient(45deg, #47b2fb, #2f95fa 30%);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: linear-gradient(45deg, #47b2fb, #2f95fa);
+    box-shadow: 0px 2px 4px 0px rgba(45, 152, 255, 0.5);
+  }
+}
+
+/* 将会废弃,请不要继续使用 */
+.fe-border-bottom {
+  border-bottom: 1px solid #e6ecee;
+}
+
+/* 分隔符 */
+.fe-divider {
+  display: inline-block;
+  // display: inline-table;
+  width: 1px;
+  height: 0.85em;
+  line-height: 1;
+  vertical-align: middle;
+  margin: 0 12px;
+  background: #dcdfe6;
+}
+
+/* 图表head，配合chart.spacingTop使用 */
+.fe-hc-head {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  .fe-head();
+}
+
+/* 设置宽度为内容宽度 */
+.fe-inline-width {
+  width: auto;
+}
