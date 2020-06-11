@@ -8,12 +8,12 @@
       <div class="fe-flex-center login-box-head">
         <span class="login-box-title">用户登录</span>
       </div>
-      <el-form :model="formInline" :rules="rules" class="fe-flex-column">
+      <el-form :model="formInline" :rules="rules" class="fe-flex-column" ref="loginForm">
         <el-form-item prop="name">
           <el-input class="user" v-model="formInline.name" placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input class="password" v-model="formInline.password" placeholder="用户密码"></el-input>
+          <el-input class="password" v-model="formInline.password" placeholder="用户密码" type="password"></el-input>
         </el-form-item>
         <el-form-item>
           <el-checkbox label="记住我" name="type"></el-checkbox>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data () {
     return {
@@ -39,23 +40,45 @@ export default {
         password: ""
       },
       rules: {
-        name: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
-        ],
-        password: [
-          { required: true, message: '请输入密码', trigger: 'blur' }
-        ]
+        name: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       }
     };
   },
   created () {
-    console.log("112233");
+    // console.log("112233");
   },
   methods: {
     handleLogin () {
-      this.$router.push('main')
-    }
+      this.$refs["loginForm"].validate(valid => {
+        if (valid) {
+          this.$http
+            .post("/farming/user/loginUser?username=admin&password=123456", {
+              username: this.formInline.name,
+              password: this.formInline.password
+            })
+            .then(res => {
+              console.log(res);
+              if (res.data.messageCode === 10000) {
+                const result = res.data.resData;
+                this.setUserInfo({
+                  userName: result.username,
+                  id: result.id,
+                  nickname: result.nickname,
+                  phone: result.phone
+                });
+                this.$router.push("main");
+              } else {
+                this.$message({
+                  message: "登录失败",
+                  type: "warning"
+                });
+              }
+            });
+        }
+      });
+    },
+    ...mapMutations("user", ["setUserInfo"])
   }
 };
 </script>

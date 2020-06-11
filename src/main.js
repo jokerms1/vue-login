@@ -5,6 +5,7 @@ import App from "./App";
 
 import axios from "axios";
 import router from "./router";
+import store from "./store";
 // import element from "./plugins/element";
 import element from "element-ui";
 // import "./styles/index.less";
@@ -15,12 +16,14 @@ import "./styles/index.less";
 Vue.use(element);
 Vue.use(Vuex);
 
+axios.defaults.baseURL = "http://114.115.207.169:9085";
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
+  store,
   router,
   components: { App },
   template: "<App/>"
