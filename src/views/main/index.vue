@@ -32,7 +32,7 @@
       </el-table>
     </div>
   </div>
-  <el-dialog title="编辑用户" :visible.sync="dialogVisble" width="400px" no-padding>
+  <el-dialog title="编辑用户" :visible.sync="dialogVisble" width="400px">
     <el-form :inline="true" :rules="rules" :label-position="labelPosition" label-width="65px" class="fe-flex-center fe-flex-column" no-padding>
       <el-form-item label="账号" prop="account">
         <el-input></el-input>
@@ -63,6 +63,7 @@ export default {
   created () {
     this.getUserData();
   },
+
   data () {
     return {
       labelPosition: 'right',

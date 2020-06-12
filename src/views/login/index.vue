@@ -22,6 +22,10 @@
           <el-button type="primary" style="width:262px" @click="handleLogin">登录</el-button>
         </el-form-item>
       </el-form>
+      <!-- 了解插槽的实现功能 -->
+      <!-- <MsCard title="newYear">
+        <span slot="title">kkkkyyy</span>
+      </MsCard>-->
     </div>
   </main>
   <footer class="login-footer fe-flex-center">
@@ -32,6 +36,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+import MsCard from "../components/MsCard";
 export default {
   data () {
     return {
@@ -47,6 +52,9 @@ export default {
   },
   created () {
     // console.log("112233");
+  },
+  components: {
+    MsCard
   },
   methods: {
     handleLogin () {
