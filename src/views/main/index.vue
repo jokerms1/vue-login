@@ -1,72 +1,113 @@
 <template>
-<div>
-  <div class="fe-layout">
-    <head class="fe-head main-head">
-      <div class="fe-flex-center">
-        <div style="width:90px">用户名</div>
-        <el-input class="fe-ml" placeholder="请输入用户名"></el-input>
-        <el-button class="fe-ml" type="primary" icon="el-icon-search">搜索</el-button>
+  <div>
+    <div class="fe-layout">
+      <head class="fe-head main-head">
+        <div class="fe-flex-center">
+          <div style="width:90px">用户名</div>
+          <el-input class="fe-ml" placeholder="请输入用户名"></el-input>
+          <el-button class="fe-ml" type="primary" icon="el-icon-search"
+            >搜索</el-button
+          >
+        </div>
+        <div class="fe-flex-center">
+          <el-button
+            type="primary"
+            icon="el-icon-circle-plus-outline"
+            @click="changeTheme('theme1')"
+            >修改</el-button
+          >
+          <el-button class="fe-ml" type="primary" icon="el-icon-delete"
+            >删除</el-button
+          >
+        </div>
+      </head>
+      <div class="fe-px fe-pb">
+        <!-- <div class="test-bg">
+          1211312
+        </div> -->
+        <el-table
+          ref="multipleTable"
+          tooltip-effect="dark"
+          style="width: 100%"
+          :data="userData"
+          :height="tableHeight"
+        >
+          <el-table-column type="selection" width="55"></el-table-column>
+          <el-table-column prop="id" label="序号" width="120"></el-table-column>
+          <el-table-column
+            prop="nickname"
+            label="账号"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            prop="username"
+            label="用户名"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            prop="phone"
+            label="手机号"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            prop="createtime"
+            label="日期"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <div style="width:120px" class="fe-head">
+                <i @click="dialogVisble = true" class="el-icon-edit"></i>
+                <i class="el-icon-share"></i>
+                <i class="el-icon-delete"></i>
+              </div>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
-      <div class="fe-flex-center">
-        <el-button type="primary" icon="el-icon-circle-plus-outline">添加</el-button>
-        <el-button class="fe-ml" type="primary" icon="el-icon-delete">删除</el-button>
-      </div>
-    </head>
-    <div class="fe-px fe-pb">
-      <el-table ref="multipleTable" tooltip-effect="dark" style="width: 100%" :data="userData" :height="tableHeight">
-        <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column prop="id" label="序号" width="120"></el-table-column>
-        <el-table-column prop="nickname" label="账号" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="username" label="用户名" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="phone" label="手机号" show-overflow-tooltip></el-table-column>
-        <el-table-column prop="createtime" label="日期" show-overflow-tooltip></el-table-column>
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-            <div style="width:120px" class="fe-head">
-              <i @click="dialogVisble = true" class="el-icon-edit"></i>
-              <i class="el-icon-share"></i>
-              <i class="el-icon-delete"></i>
-            </div>
-          </template>
-        </el-table-column>
-      </el-table>
     </div>
+    <el-dialog title="编辑用户" :visible.sync="dialogVisble" width="400px">
+      <el-form
+        :inline="true"
+        :rules="rules"
+        :label-position="labelPosition"
+        label-width="65px"
+        class="fe-flex-center fe-flex-column"
+        no-padding
+      >
+        <el-form-item label="账号" prop="account">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="用户名" prop="username">
+          <el-input></el-input>
+        </el-form-item>
+        <el-form-item label="手机号" prop="phone">
+          <el-input></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dislog-footer">
+        <el-button @click="dialogVisble = false">取消</el-button>
+        <el-button type="primary">确定</el-button>
+      </span>
+    </el-dialog>
   </div>
-  <el-dialog title="编辑用户" :visible.sync="dialogVisble" width="400px">
-    <el-form :inline="true" :rules="rules" :label-position="labelPosition" label-width="65px" class="fe-flex-center fe-flex-column" no-padding>
-      <el-form-item label="账号" prop="account">
-        <el-input></el-input>
-      </el-form-item>
-      <el-form-item label="用户名" prop="username">
-        <el-input></el-input>
-      </el-form-item>
-      <el-form-item label="手机号" prop="phone">
-        <el-input></el-input>
-      </el-form-item>
-    </el-form>
-    <span slot="footer" class="dislog-footer">
-      <el-button @click="dialogVisble = false">取消</el-button>
-      <el-button type="primary">确定</el-button>
-    </span>
-  </el-dialog>
-</div>
 </template>
 
 <script>
 export default {
   computed: {
-    tableHeight () {
-      let height = `calc(100vh - 82px)`;
+    tableHeight() {
+      let height = `calc(100vh - 98px)`;
       return height;
     }
   },
-  created () {
+  created() {
     this.getUserData();
   },
 
-  data () {
+  data() {
     return {
-      labelPosition: 'right',
+      labelPosition: "right",
       tableData: [
         {
           name: 12222,
@@ -83,7 +124,7 @@ export default {
     };
   },
   methods: {
-    getUserData () {
+    getUserData() {
       this.$http
         .post("/farming/user/page?username=admin&pageNum=1&pageSize=5", {
           username: "admin",
@@ -101,19 +142,30 @@ export default {
             });
           }
         });
+    },
+    changeTheme(theme) {
+      window.document.documentElement.setAttribute("data-theme", "theme2");
     }
   }
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
+@import "../../styles/scss/mixin.scss";
 .main-head {
   height: 80px;
+}
+.test-bg {
+  width: 100px;
+  height: 100px;
+  @include bg_color($background-color-theme);
+  @include font_color($font-color-theme);
 }
 /deep/ .el-dialog__title {
   line-height: 20px;
   font-size: 16px;
-  color: white;
+  // color: white;
+  @include font_color($font-color-theme);
 }
 /deep/ .el-table {
   position: relative;
@@ -134,11 +186,13 @@ export default {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-  background: LightSkyBlue;
+  // background: LightSkyBlue;
+  @include bg_color($background-color-theme);
 }
 /deep/ .el-dialog__header {
   padding: 20px 20px 20px;
-  background: #409eff;
+  // background: #409eff;
+  @include bg_color($background-color-theme);
 }
 /deep/ .el-dialog__headerbtn .el-dialog__close {
   color: white;
