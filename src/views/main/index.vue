@@ -22,10 +22,10 @@
         </div>
       </head>
       <div class="fe-px fe-pb">
-        <!-- <div class="test-bg">
+        <div class="test-bg">
           1211312
-        </div> -->
-        <el-table
+        </div>
+        <!-- <el-table
           ref="multipleTable"
           tooltip-effect="dark"
           style="width: 100%"
@@ -63,7 +63,7 @@
               </div>
             </template>
           </el-table-column>
-        </el-table>
+        </el-table> -->
       </div>
     </div>
     <el-dialog title="编辑用户" :visible.sync="dialogVisble" width="400px">
@@ -151,7 +151,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/scss/mixin.scss";
 .main-head {
   height: 80px;
 }

@@ -12,7 +12,6 @@ import element from "element-ui";
 import Vuex from "vuex";
 import "element-ui/lib/theme-chalk/index.css";
 import "./styles/index.less";
-import "./styles/scss/mixin.scss";
 
 Vue.use(element);
 Vue.use(Vuex);
