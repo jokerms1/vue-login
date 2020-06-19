@@ -37,6 +37,7 @@
 <script>
 import { mapMutations } from "vuex";
 import MsCard from "../components/MsCard";
+import MD5 from '@/utils/md5';
 export default {
   data () {
     return {
@@ -52,6 +53,7 @@ export default {
   },
   created () {
     // console.log("112233");
+    this.getLogin();
   },
   components: {
     MsCard
@@ -85,6 +87,26 @@ export default {
             });
         }
       });
+    },
+    getLogin () {
+      const params = {
+        username: "admin",
+        passwd: "e10adc3949ba59ab"
+      }
+      const token = MD5("/openapi/base/loginByPasswd" + JSON.stringify(params));
+      console.log(token)
+      const url = "/openapi/base/loginByPasswd?token=a6c5ab99eed3b0987194e0e343280ab0";
+      this.$http.post(url, {
+        username: "admin",
+        passwd: "e10adc3949ba59ab",
+        vscscrip: "192.168.0.152"
+      })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     ...mapMutations("user", ["setUserInfo"])
   }

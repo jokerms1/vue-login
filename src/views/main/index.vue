@@ -1,6 +1,6 @@
 <template>
-<div>
-  <div class="fe-layout ms">
+  <div>
+    <!-- <div class="fe-layout ms">
     <head class="fe-head main-head">
       <div class="fe-flex-center">
         <div style="width:90px">用户名</div>
@@ -13,9 +13,6 @@
       </div>
     </head>
     <div class="fe-px fe-pb">
-      <!-- <div class="test-bg">
-          1211312
-      </div>-->
       <el-table ref="multipleTable" tooltip-effect="dark" style="width: 100%" :data="userData" :height="tableHeight">
         <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="id" label="序号" width="120"></el-table-column>
@@ -34,8 +31,8 @@
         </el-table-column>
       </el-table>
     </div>
-  </div>
-  <el-dialog class="ms" title="编辑用户" :visible.sync="dialogVisble" width="400px">
+    </div>-->
+    <!-- <el-dialog class="ms" title="编辑用户" :visible.sync="dialogVisble" width="400px">
     <el-form :inline="true" :rules="rules" :label-position="labelPosition" label-width="65px" class="fe-flex-center fe-flex-column" no-padding>
       <el-form-item label="账号" prop="account">
         <el-input></el-input>
@@ -51,11 +48,21 @@
       <el-button @click="dialogVisble = false">取消</el-button>
       <el-button type="primary">确定</el-button>
     </span>
-  </el-dialog>
-</div>
+    </el-dialog>-->
+    <wcp-tree :data="data" :props="defaultProps" default-expand-all>
+      <!-- <ul slot-scope="{ node, data }">
+        <span v-if="data.children" style="color:#FFFFFF;font-size:15px;">{{ node.label }}</span>
+        <div v-else class="fe-flex-center" style="height:32px;font-size:13px;">
+          <div class="circle"></div>
+          <span style="margin-left:5px;">{{node.label}}</span>
+        </div>
+      </ul>-->
+    </wcp-tree>
+  </div>
 </template>
 
 <script>
+import WcpTree from "@/views/components/tree/tree"
 export default {
   computed: {
     tableHeight () {
@@ -65,6 +72,10 @@ export default {
   },
   created () {
     this.getUserData();
+  },
+
+  components: {
+    WcpTree
   },
 
   data () {
@@ -82,7 +93,37 @@ export default {
         phone: [{ required: true, message: "请输入手机号", trigger: "blur" }]
       },
       userData: [],
-      dialogVisble: false
+      dialogVisble: false,
+      data: [{
+        label: '资源管理',
+        children: [{
+          label: '资源组管理',
+        }, {
+          label: '视频资源管理',
+        }, {
+          label: '报警资源管理',
+        }, {
+          label: '设备管理',
+        }, {
+          label: '服务器管理',
+          children: [
+            {
+              label: '资源组管理'
+            }
+          ]
+        }]
+      }, {
+        label: '用户管理',
+        children: [{
+          label: '角色管理',
+        }, {
+          label: '用户管理',
+        }]
+      }],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
+      }
     };
   },
   methods: {

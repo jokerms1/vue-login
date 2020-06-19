@@ -36,7 +36,7 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /\.js$/,
+        test: /\.(jsx?)$/,
         loader: "babel-loader",
         include: [
           resolve("src"),

@@ -16,7 +16,8 @@ import "./styles/index.less";
 Vue.use(element);
 Vue.use(Vuex);
 
-axios.defaults.baseURL = "http://114.115.207.169:9085";
+// axios.defaults.baseURL = "http://114.115.207.169:9085";
+// axios.defaults.withCredentials = true;
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
