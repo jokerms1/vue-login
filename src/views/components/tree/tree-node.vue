@@ -57,9 +57,9 @@
         ></wcp-tree-node>
       </div>
     </el-collapse-transition> -->
-    <div class="fe-flex-column" :class="[ {'expand-border': flag(node) || node.isLeaf} ]" :style="{ 'margin-left':  tree.indent/2 + 'px'}">
+    <div class="fe-flex-column" :class="[ {'expand-border': flag(node)} ]" :style="{ 'margin-left':  tree.indent/2 + 'px'}">
       <div class="fe-flex-column">
-        <div class="line" v-if="node.level !== 1 && !flag(node) && !node.isLeaf"></div>  
+        <div class="line" v-if="node.level !== 1 && !flag(node)"></div>  
         <div class="fe-align-center">
           <img v-show="expanded && !node.isLeaf" src="./550.png" :style="{ 'margin-left': (node.level > 0) * -5  + 'px'}"  @click.stop="handleExpandIconClick" class="expand-icon" />
           <img v-show="!expanded && !node.isLeaf" src="./560.png" :style="{ 'margin-left': (node.level > 0) * -5  + 'px'}" @click.stop="handleExpandIconClick" class="expand-icon" />
@@ -332,7 +332,7 @@ export default {
   align-items: center;
 }
 .line {
-  height: 20px;
+  height: 15px;
   width: 0px;
   // width: 10px;
   // background: url(./line_conn.gif) 0 0 repeat-y;
