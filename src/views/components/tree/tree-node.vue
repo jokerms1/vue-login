@@ -58,24 +58,22 @@
       </div>
     </el-collapse-transition> -->
     <div class="fe-flex-column" :class="[ {'expand-border': flag(node)} ]" :style="{ 'margin-left':  tree.indent/2 + 'px'}">
-      <div class="fe-flex-column">
+      <div class="expand-flex-column">
         <div class="line" v-if="node.level !== 1 && !flag(node)"></div>  
         <div class="fe-align-center">
-          <img v-show="expanded && !node.isLeaf" src="./550.png" :style="{ 'margin-left': (node.level > 0) * -5  + 'px'}"  @click.stop="handleExpandIconClick" class="expand-icon" />
-          <img v-show="!expanded && !node.isLeaf" src="./560.png" :style="{ 'margin-left': (node.level > 0) * -5  + 'px'}" @click.stop="handleExpandIconClick" class="expand-icon" />
-          <div class="fe-align-center">
-            <div class="line2"></div>
-            <el-checkbox
-              v-if="showCheckbox"
-              v-model="node.checked"
-              :indeterminate="node.indeterminate"
-              :disabled="!!node.disabled"
-              @click.native.stop
-              @change="handleCheckChange"
-            ></el-checkbox>
-            <span v-if="node.loading" class="el-tree-node__loading-icon el-icon-loading"></span>
-            <node-content :node="node" style="margin-left: 4px"></node-content>
-          </div>
+          <img v-show="expanded && !node.isLeaf" src="./550.png"  @click.stop="handleExpandIconClick" class="expand-icon" />
+          <img v-show="!expanded && !node.isLeaf" src="./560.png" @click.stop="handleExpandIconClick" class="expand-icon" />
+          <div class="line2"></div>
+          <el-checkbox
+            v-if="showCheckbox"
+            v-model="node.checked"
+            :indeterminate="node.indeterminate"
+            :disabled="!!node.disabled"
+            @click.native.stop
+            @change="handleCheckChange"
+          ></el-checkbox>
+          <span v-if="node.loading" class="el-tree-node__loading-icon el-icon-loading"></span>
+          <node-content :node="node" style="margin-left: 4px"></node-content>
         </div>
       </div>
       <el-collapse-transition>
@@ -310,12 +308,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.expand-flex-column {
+  display: flex;
+  flex-direction: column;
+  height: 20px;
+}
 .expand-border {
   border-left:1px dotted #d2d2d2;
 }
 .expand-icon {
   width: 10px;
   height: 10px;
+  margin-left: -5px;
+  margin-right: -5px;
 }
 .expand-flex {
   display: flex;
@@ -332,7 +337,7 @@ export default {
   align-items: center;
 }
 .line {
-  height: 15px;
+  height: 12px;
   width: 0px;
   // width: 10px;
   // background: url(./line_conn.gif) 0 0 repeat-y;

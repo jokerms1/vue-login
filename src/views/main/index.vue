@@ -49,7 +49,8 @@
       <el-button type="primary">确定</el-button>
     </span>
     </el-dialog>-->
-    <wcp-tree :data="data" :props="defaultProps" default-expand-all style="margin-left:10px">
+    <wcp-tree :data="data" :props="defaultProps" default-expand-all style="margin-left:10px" show-checkbox>
+    <!-- <el-tree :data="data" :props="defaultProps" default-expand-all style="margin-left:10px" show-checkbox></el-tree> -->
       <!-- <ul slot-scope="{ node, data }">
         <span v-if="data.children" style="color:#FFFFFF;font-size:15px;">{{ node.label }}</span>
         <div v-else class="fe-flex-center" style="height:32px;font-size:13px;">
