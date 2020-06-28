@@ -23,28 +23,41 @@
     @drop.stop="handleDrop"
     ref="node"
   >
-    <div class="el-tree-node__content" :style="{ 'padding-left': (node.level - 1) * tree.indent + 'px' }">
-      <div class="line" v-if="node.level !== 1"></div>
-      <div class="line2" v-if="node.level !== 1"></div>
-      <span
-        @click.stop="handleExpandIconClick"
-        v-if="!node.isLeaf"
-        :class="[
-          { 'is-leaf': node.isLeaf, expanded: !node.isLeaf && expanded },
-          'el-tree-node__expand-icon',
-          tree.iconClass ? tree.iconClass : 'el-icon-caret-right'
-        ]"
-      ></span>
-      <el-checkbox
-        v-if="showCheckbox"
-        v-model="node.checked"
-        :indeterminate="node.indeterminate"
-        :disabled="!!node.disabled"
-        @click.native.stop
-        @change="handleCheckChange"
-      ></el-checkbox>
-      <span v-if="node.loading" class="el-tree-node__loading-icon el-icon-loading"></span>
-      <node-content :node="node"></node-content>
+    <!-- <div class="line2" v-if="node.level !== 1" :style="{ 'padding-left': (node.level - 2) * tree.indent/2 + 'px'}"></div> -->
+    <div class="el-tree-node__content" :style="{ 'padding-left': (node.level - 1) * tree.indent/2 + 'px'}">
+      <div class="fe-flex-column">
+        <div class="line" v-if="node.level !== 1"></div>
+        
+        <!-- <div class="line3" v-if="expanded && node.isLeaf"></div> -->
+        
+        <div class="fe-align-center">
+          <!-- <span
+            v-if="!node.isLeaf"
+            @click.stop="handleExpandIconClick"
+            :class="[
+              { 'is-leaf': node.isLeaf, expanded: !node.isLeaf && expanded },
+              'el-tree-node__expand-icon',
+              tree.iconClass ? tree.iconClass : 'el-icon-caret-right'
+            ]"
+            class="icon-expand"
+          ></span> -->
+          <!-- <i @click.stop="handleExpandIconClick" class="icon-expand"></i> -->
+          <img v-if="expanded && !node.isLeaf" src="./550.png" :style="{ 'margin-left': (node.level > 1) * -4  + 'px'}"  @click.stop="handleExpandIconClick" class="expand-icon" />
+          <img v-if="!expanded && !node.isLeaf" src="./560.png" :style="{ 'margin-left': (node.level > 1) * -4  + 'px'}" @click.stop="handleExpandIconClick" class="expand-icon" />
+          <div class="line2" v-if="node.level !== 1"></div>
+          <el-checkbox
+            v-if="showCheckbox"
+            v-model="node.checked"
+            :indeterminate="node.indeterminate"
+            :disabled="!!node.disabled"
+            @click.native.stop
+            @change="handleCheckChange"
+          ></el-checkbox>
+          <span v-if="node.loading" class="el-tree-node__loading-icon el-icon-loading"></span>
+          <node-content :node="node" style="margin-left: 4px"></node-content>
+          <!-- <span style="margin-left:15px">{{node.label}}</span> -->
+        </div>
+      </div>
     </div>
     <el-collapse-transition>
       <div class="el-tree-node__children" v-if="!renderAfterExpand || childNodeRendered" v-show="expanded" role="group" :aria-expanded="expanded">
@@ -71,7 +84,7 @@ import { getNodeKey } from './model/util';
 export default {
   name: 'WcpTreeNode',
 
-  componentName: 'ElTreeNode',
+  componentName: 'WcpTreeNode',
 
   mixins: [emitter],
 
@@ -112,7 +125,7 @@ export default {
             ? parent.renderContent.call(parent._renderProxy, h, { _self: tree.$vnode.context, node, data, store })
             : tree.$scopedSlots.default
               ? tree.$scopedSlots.default({ node, data })
-              : <span class="el-tree-node__label">{node.label}</span>
+              : <span class="el-tree-node__label"> <img src='' /> {node.label}</span>
         );
       }
     }
@@ -270,20 +283,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.expand-icon {
+  width: 10px;
+  height: 10px;
+}
+.expand-flex {
+  display: flex;
+  flex-direction: row;
+}
+/deep/ .el-icon-caret-right:before {
+  width: 20px;
+  height: 20px;
+}
 /deep/ .el-tree-node__content {
   height: 30px;
   cursor: pointer;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
 }
 .line {
-  height: 30px;
+  height: 25px;
+  width: 0px;
   // width: 10px;
   // background: url(./line_conn.gif) 0 0 repeat-y;
-  border: 1px dotted #d2d2d2;
+  border: 0.4px dotted #d2d2d2;
+  margin-bottom: -8px;
+  margin-top: -5px;
+}
+.line3 {
+  height: 40px;
+  width: 0px;
+  // width: 10px;
+  // background: url(./line_conn.gif) 0 0 repeat-y;
+  border: 0.4px dotted #d2d2d2;
+  // margin-bottom: -8px;
+  // margin-top: -5px;
+  margin-left: -12px;
+  margin-top: -30px;
 }
 .line2 {
-  width: 10px;
-  border: 1px dotted #d2d2d2;
+  width: 15px;
+  height: 0;
+  border: 0.4px dotted #d2d2d2;
+  // background: url(./line_conn.gif) 0 0 repeat-x;
 }
+// /deep/ .el-icon-caret-right:before {
+//   content: "\e6e0";
+// }
 </style>

@@ -14,7 +14,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.path === "/login") {
     next();
-  } else if (to.path === "/main" && store.state.user.userInfo.userName) {
+  } else if (to.path === "/main") {
     next();
   } else if (to.path !== "/login") {
     if (store.state.user.userInfo.userName) {

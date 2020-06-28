@@ -60,33 +60,34 @@ export default {
   },
   methods: {
     handleLogin () {
-      this.$refs["loginForm"].validate(valid => {
-        if (valid) {
-          this.$http
-            .post("/farming/user/loginUser?username=admin&password=123456", {
-              username: this.formInline.name,
-              password: this.formInline.password
-            })
-            .then(res => {
-              console.log(res);
-              if (res.data.messageCode === 10000) {
-                const result = res.data.resData;
-                this.setUserInfo({
-                  userName: result.username,
-                  id: result.id,
-                  nickname: result.nickname,
-                  phone: result.phone
-                });
-                this.$router.push("main");
-              } else {
-                this.$message({
-                  message: "登录失败",
-                  type: "warning"
-                });
-              }
-            });
-        }
-      });
+      // this.$refs["loginForm"].validate(valid => {
+      //   if (valid) {
+      //     this.$http
+      //       .post("/farming/user/loginUser?username=admin&password=123456", {
+      //         username: this.formInline.name,
+      //         password: this.formInline.password
+      //       })
+      //       .then(res => {
+      //         console.log(res);
+      //         if (res.data.messageCode === 10000) {
+      //           const result = res.data.resData;
+      //           this.setUserInfo({
+      //             userName: result.username,
+      //             id: result.id,
+      //             nickname: result.nickname,
+      //             phone: result.phone
+      //           });
+      //           this.$router.push("main");
+      //         } else {
+      //           this.$message({
+      //             message: "登录失败",
+      //             type: "warning"
+      //           });
+      //         }
+      //       });
+      //   }
+      // });
+      this.$router.push("main");
     },
     getLogin () {
       const params = {
