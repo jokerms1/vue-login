@@ -122,7 +122,7 @@ export default {
     accordion: Boolean,
     indent: {
       type: Number,
-      default: 24
+      default: 40
     },
     iconClass: String
   },
