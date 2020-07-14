@@ -14,5 +14,10 @@ const routes = [
     name: "404",
     component: () => import("@/views/404"),
   },
+  {
+    path: "/h5s",
+    name: "h5s",
+    component: () => import("@/views/h5s")
+  }
 ];
 export default routes;

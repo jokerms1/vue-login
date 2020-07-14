@@ -16,6 +16,8 @@ import "./styles/index.less";
 Vue.use(element);
 Vue.use(Vuex);
 
+const bus = new Vue();
+
 // axios.defaults.baseURL = "http://114.115.207.169:9085";
 // axios.defaults.withCredentials = true;
 Vue.prototype.$http = axios;
@@ -27,5 +29,8 @@ new Vue({
   store,
   router,
   components: { App },
+  data: {
+    bus
+  },
   template: "<App/>"
 });

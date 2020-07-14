@@ -23,7 +23,7 @@
             class="filter-tree"
           >
           </el-input>
-          <el-tree
+          <wcp-tree
             ref="from-tree"
             show-checkbox
             :lazy="lazy"
@@ -39,7 +39,7 @@
             :default-expanded-keys="from_expanded_keys"
             @check="fromTreeChecked"
           >
-          </el-tree>
+          </wcp-tree>
           <slot name="left-footer"></slot>
         </div>
       </div>
@@ -499,6 +499,10 @@ export default {
       });
     }
   },
+  components: {
+    WcpTree: ()=> import('../tree/tree')
+  },
+
   methods: {
     // -------------------------------提供输出函数---------------------
     /**

@@ -11,28 +11,28 @@ const router = new Router({
   scrollBehavior: () => ({ y: 0 }),
 });
 
-router.beforeEach((to, from, next) => {
-  if (to.path === "/login") {
-    next();
-  } else if (to.path === "/main") {
-    next();
-  } else if (to.path !== "/login") {
-    if (store.state.user.userInfo.userName) {
-      if (to.path == "/") {
-        next({
-          path: "/main",
-        });
-      } else {
-        next();
-      }
-    } else {
-      next({
-        path: "/login",
-      });
-    }
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   if (to.path === "/login") {
+//     next();
+//   } else if (to.path === "/main") {
+//     next();
+//   } else if (to.path !== "/login") {
+//     if (store.state.user.userInfo.userName) {
+//       if (to.path == "/") {
+//         next({
+//           path: "/main",
+//         });
+//       } else {
+//         next();
+//       }
+//     } else {
+//       next({
+//         path: "/login",
+//       });
+//     }
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;

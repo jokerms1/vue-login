@@ -49,7 +49,7 @@
       <el-button type="primary">确定</el-button>
     </span>
     </el-dialog>-->
-    <wcp-tree :data="data" :props="defaultProps" default-expand-all style="margin-left:10px" show-checkbox>
+    <!-- <wcp-tree :data="data" :props="defaultProps" default-expand-all style="margin-left:10px" show-checkbox> -->
     <!-- <el-tree :data="data" :props="defaultProps" default-expand-all style="margin-left:10px" show-checkbox></el-tree> -->
       <!-- <ul slot-scope="{ node, data }">
         <span v-if="data.children" style="color:#FFFFFF;font-size:15px;">{{ node.label }}</span>
@@ -58,7 +58,6 @@
           <span style="margin-left:5px;">{{node.label}}</span>
         </div>
       </ul>-->
-    </wcp-tree>
     <tree-transfer
       ref="wl-tree-transfer"
       filter
